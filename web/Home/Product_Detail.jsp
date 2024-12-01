@@ -151,6 +151,30 @@
         </style>
     </head>
     <body>
+        <script>
+
+            let cartItems = []; // Lưu trữ các sản phẩm trong giỏ hàng
+
+            function addToCart(product) {
+                cartItems.push(product); // Thêm sản phẩm vào giỏ hàng
+                updateCartCount(); // Cập nhật số lượng sản phẩm trong giỏ hàng
+            }
+
+            function updateCartCount() {
+                let cartCount = cartItems.length; // Lấy số lượng sản phẩm trong giỏ hàng
+                document.getElementById("cart-count").textContent = cartCount; // Cập nhật số lượng vào giao diện
+            }
+
+            document.getElementById("add-to-cart-button").addEventListener("click", function () {
+                let product = {
+                    id: 1,
+                    name: "Product 1",
+                    price: 100
+                };
+                addToCart(product); // Thêm sản phẩm vào giỏ và cập nhật số lượng
+            });
+
+        </script>
         <!-- banner bg main start -->
         <div class="banner_bg_main">
             <!-- header top section start -->
@@ -221,7 +245,7 @@
                         </div>
 
                         <div class="header_box">
-                             <div class="lang_box ">
+                            <div class="lang_box ">
                                 <a href="LogoutServlet"  class="nav-link"  >
                                     đăng xuất
                                 </a>
@@ -287,29 +311,40 @@
         </div>
 
         <!-- product detail section start -->
-
         <div class="product_detail_section layout_padding">
-            <h2>Thông tin sản phẩm </h2>
+            <h2>Thông tin sản phẩm</h2>
             <div class="container">
+            
+                <c:if test="${not empty success}">
+                    <div class="alert alert-success">
+                        ${success}  <!-- Hiển thị thông báo thành công -->
+                    </div>
+                </c:if>
+
                 <c:choose>
                     <c:when test="${not empty product}">
                         <div class="row">
+                            <!-- Hình ảnh sản phẩm -->
                             <div class="col-sm-6">
                                 <img src="Admin/image/${product.image}" alt="${product.name}" class="img-fluid">
                             </div>
+                            <!-- Thông tin sản phẩm -->
                             <div class="col-sm-6">
                                 <h1>${product.name}</h1>
                                 <p>${product.description}</p>
                                 <h2><fmt:formatNumber value="${product.price}" type="currency"/> VND</h2>
-
-                                <!--  số lượng sản phẩm -->
-                                <form action="addToCart" method="get">
+                                <form action="cart" method="post">
+                                    <!-- ID sản phẩm -->
                                     <input type="hidden" name="productId" value="${product.id}">
+                                    <!-- Giá sản phẩm -->
+                                    <input type="hidden" name="price" value="${product.price}">
+                                    <!-- Số lượng sản phẩm -->
                                     <div class="form-group">
                                         <label for="quantity">Số lượng:</label>
                                         <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                    <!-- Nút thêm vào giỏ hàng -->
+                                    <button type="submit" class="btn btn-primary" id="add-to-cart-button">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
                         </div>

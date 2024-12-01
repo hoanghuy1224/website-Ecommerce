@@ -36,10 +36,11 @@ public class LoginServlet extends HttpServlet {
             Users user = usersDAO.getUserByUsername(username);
             if (user != null && verifyPassword(password, user.getPassword())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("user", user);
+                session.setAttribute("user", user);           // Lưu đối tượng user vào session
+                session.setAttribute("userId", user.getId()); // Lưu userId vào session
 
                 if ("ADMIN".equals(user.getRole())) {
-                    response.sendRedirect(request.getContextPath() +"/homesevlet"); // Redirect đến trang admin
+                    response.sendRedirect(request.getContextPath() + "/homesevlet"); // Redirect đến trang admin
                 } else {
                     response.sendRedirect(request.getContextPath() + "/listhome"); // Redirect đến trang người dùng
                 }

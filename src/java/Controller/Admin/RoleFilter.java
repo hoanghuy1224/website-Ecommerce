@@ -17,7 +17,7 @@ public class RoleFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession(true);
 
         if (session != null) {
             Users user = (Users) session.getAttribute("user");
@@ -25,17 +25,18 @@ public class RoleFilter implements Filter {
 
             if (user != null) {               
                 if (requestURI.startsWith(req.getContextPath() + "/homesevlet") && "ADMIN".equals(user.getRole())) {
+                    // Nếu người dùng có quyền truy cập (admin), tiếp tục xử lý request
                     chain.doFilter(request, response);
                 } else {
-                    // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang 
-                   // res.sendRedirect(req.getContextPath() + "/AccessDenied.jsp");
+                    // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang AccessDenied.jsp
+                    res.sendRedirect(req.getContextPath() + "/AccessDenied.jsp");
                 }
             } else {
                 // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
                 res.sendRedirect(req.getContextPath() + "/login");
             }
         } else {
-            // Nếu không có session, chuyển hướng đến trang đăng nhập
+            // Nếu không có session (nghĩa là chưa đăng nhập), chuyển hướng đến trang đăng nhập
             res.sendRedirect(req.getContextPath() + "/login");
         }
     }

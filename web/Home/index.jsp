@@ -41,9 +41,13 @@
         <link rel="stylesheet" href="Home/css/owl.carousel.min.css">
         <link rel="stylesoeet" href="Home/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+        <style>
+
+        </style>
     </head>
+
     <body>
-       
+
         <!-- banner bg main start -->
         <div class="banner_bg_main">
             <!-- header top section start -->
@@ -122,16 +126,20 @@
                             </div>
                             <div class="login_menu">
                                 <ul>
-                                    <li><a href="#">
+                                    <li><a href="cart">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span class="padding_10">giỏ hàng</span></a>
+                                            <span class="padding_10">Giỏ hàng</span>
+                                            <span id="cart-count" class="cart-count">0</span> <!-- Số lượng sản phẩm trong giỏ hàng -->
+                                        </a>
                                     </li>
                                     <li><a href="login">
                                             <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span class="padding_10">tài khoản</span></a>
+                                            <span class="padding_10">Tài khoản</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
