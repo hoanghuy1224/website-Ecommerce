@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect(request.getContextPath() + "/login"); // Redirect đến trang đăng nhập
+        response.sendRedirect(request.getContextPath() + "/listhome"); 
     }
 }
     

@@ -227,12 +227,13 @@
     </head>
     <body>
         <div>
-            <%-- Nếu có thông báo lỗi thì hiển thị --%>
+            <%-- Hiển thị thông báo lỗi nếu có --%>
             <c:if test="${not empty error}">
                 <div class="alert alert-danger">
                     ${error}
                 </div>
             </c:if>
+
             <h1>Giỏ hàng của bạn</h1>
             <table border="1">
                 <tr>
@@ -244,6 +245,7 @@
                     <th>Hành động</th>
                 </tr>
                 <%
+                    // Lấy danh sách sản phẩm trong giỏ hàng
                     List<CartItem> cartItems = (List<CartItem>) request.getAttribute("cartItems");
                     int index = 1;
                     double total = 0;
@@ -253,20 +255,21 @@
                 %>
                 <tr>
                     <td><%= index++%></td>
-                    <td> <%= item.getProductId()%></td>
+                    <td><%= item.getProductId()%></td>
                     <td><%= item.getQuantity()%></td>
                     <td><%= item.getPrice()%> VND</td>
                     <td><%= itemTotal%> VND</td>
-                    <td><a href="deleteCartItem?id=<%= item.getId()%>">Xóa</a></td>
+                    <td>
+                        <a href="deleteCartItem?id=<%= item.getId()%>">Xóa</a>
+                    </td>
                 </tr>
                 <% }%>
             </table>
+
             <h3>Tổng tiền: <%= total%> VND</h3>
             <a href="checkout" class="checkout">Thanh toán</a>
             <a href="/tradingjdbc_demo/listhome" class="back-home">Quay lại trang chủ</a>
         </div>
+    </body>
 
-    </div>
-
-</body>
 </html>

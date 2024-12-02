@@ -59,12 +59,6 @@
                 padding: 40px 0;
             }
 
-            .product_detail_section h2 {
-                text-align: center;
-                font-size: 2rem;
-                margin-bottom: 30px;
-                color: #f26522;
-            }
 
             .product_detail_section .container {
                 max-width: 1200px;
@@ -151,30 +145,7 @@
         </style>
     </head>
     <body>
-        <script>
 
-            let cartItems = []; // Lưu trữ các sản phẩm trong giỏ hàng
-
-            function addToCart(product) {
-                cartItems.push(product); // Thêm sản phẩm vào giỏ hàng
-                updateCartCount(); // Cập nhật số lượng sản phẩm trong giỏ hàng
-            }
-
-            function updateCartCount() {
-                let cartCount = cartItems.length; // Lấy số lượng sản phẩm trong giỏ hàng
-                document.getElementById("cart-count").textContent = cartCount; // Cập nhật số lượng vào giao diện
-            }
-
-            document.getElementById("add-to-cart-button").addEventListener("click", function () {
-                let product = {
-                    id: 1,
-                    name: "Product 1",
-                    price: 100
-                };
-                addToCart(product); // Thêm sản phẩm vào giỏ và cập nhật số lượng
-            });
-
-        </script>
         <!-- banner bg main start -->
         <div class="banner_bg_main">
             <!-- header top section start -->
@@ -212,9 +183,9 @@
                 <div class="container">
                     <div class="containt_main">
                         <div id="mySidenav" class="sidenav">
-                            <c:forEach var="i" items="${requestScope.listdata1}">
+                            <c:forEach var="i" items="${requestScope.listdata}">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <a href="productdetail?categoryId=${i.id}">${i.name}</a>                            
+                                <a href="listhome?categoryId=${i.id}">${i.name}</a>                            
                             </c:forEach>
                         </div>
                         <span class="toggle_icon" onclick="openNav()"><img src="Home/images/toggle-icon.png"></span>
@@ -224,8 +195,8 @@
                             </button>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a href="listhome">Tất cả danh mục</a>
-                                <c:forEach var="i" items="${requestScope.listdata1}">                              
-                                    <a class="dropdown-item" href="productdetail?categoryId=${i.id}">${i.name}</a>                                                   
+                                <c:forEach var="i" items="${requestScope.listdata}">                              
+                                    <a class="dropdown-item" href="listhome?categoryId=${i.id}">${i.name}</a>                                                   
                                 </c:forEach>
                             </div>
                         </div>
@@ -253,13 +224,16 @@
                             </div>
                             <div class="login_menu">
                                 <ul>
-                                    <li><a href="#">
+                                    <li><a href="cart">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span class="padding_10">giỏ hàng</span></a>
+                                            <span class="padding_10">Giỏ hàng</span>
+
+                                        </a>
                                     </li>
                                     <li><a href="login">
                                             <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span class="padding_10">tài khoản</span></a>
+                                            <span class="padding_10">Tài khoản</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -277,7 +251,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h1 class="banner_taital">Shop Long Hoang</br> Đẳng cấp vượt trội </h1>
-                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>
+                                        <!--                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>-->
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +259,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h1 class="banner_taital">Shop Long Hoang</br> Đẳng cấp vượt trội </h1>
-                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>
+                                        <!--                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>-->
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +267,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h1 class="banner_taital">Shop Long Hoang</br> Đẳng cấp vượt trội </h1>
-                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>
+                                        <!--                                        <div class="buynow_bt"><a href="#">mua ngay</a></div>-->
                                     </div>
                                 </div>
                             </div>
@@ -312,14 +286,12 @@
 
         <!-- product detail section start -->
         <div class="product_detail_section layout_padding">
-            <h2>Thông tin sản phẩm</h2>
+
+            <div>
+                <!--                <h2>Thông tin sản phẩm</h2>-->
+            </div>
+
             <div class="container">
-            
-                <c:if test="${not empty success}">
-                    <div class="alert alert-success">
-                        ${success}  <!-- Hiển thị thông báo thành công -->
-                    </div>
-                </c:if>
 
                 <c:choose>
                     <c:when test="${not empty product}">
@@ -347,12 +319,18 @@
                                     <button type="submit" class="btn btn-primary" id="add-to-cart-button">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
+                            
                         </div>
                     </c:when>
                     <c:otherwise>
                         <p>Không tìm thấy sản phẩm.</p>
                     </c:otherwise>
                 </c:choose>
+                        <c:if test="${not empty success}">
+                                <div class="alert alert-success">
+                                    ${success}  <!-- Hiển thị thông báo thành công -->
+                                </div>
+                            </c:if>
             </div>
         </div>
         <!-- product detail section end -->

@@ -79,6 +79,7 @@ public class ListHomeServlet extends HttpServlet {
 
         // Chuyển hướng đến JSP
         request.getRequestDispatcher("Home/index.jsp").forward(request, response);
+        response.sendRedirect("Home/Product_Detail.jsp");
     }
 
     @Override

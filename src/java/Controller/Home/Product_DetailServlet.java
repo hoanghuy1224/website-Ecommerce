@@ -5,6 +5,7 @@ import DAL.ProductDAO;
 import Model.Category;
 import Model.Product;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +34,7 @@ public class Product_DetailServlet extends HttpServlet {
                     CategoryDAO categoryDAO = new CategoryDAO();
                     List<Category> categories = categoryDAO.getAll();
                     request.setAttribute("listdata1", categories);
+
                     request.getRequestDispatcher("Home/Product_Detail.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("Home/Product_Detail.jsp");
