@@ -24,7 +24,8 @@ public class CartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false); // Lấy session nếu có, nếu không có thì trả về null
+        // Lấy session nếu có, nếu không có thì trả về null
+        HttpSession session = request.getSession(false);
         Integer userId = null;
 
         if (session != null) {
@@ -46,20 +47,18 @@ public class CartController extends HttpServlet {
             cart = cartDAO.getCartByUserId(userId); // Lấy lại giỏ hàng sau khi tạo
         }
 
-        // Nếu giỏ hàng vẫn null sau khi tạo, báo lỗi
         if (cart == null) {
             request.setAttribute("error", "Không thể tạo giỏ hàng. Vui lòng thử lại.");
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);
             return;
         }
-        
+
         session.setAttribute("cart", cart);
 
         // Lấy các sản phẩm trong giỏ hàng
         List<CartItem> items = cartItemDAO.getCartItems(cart.getId());
         request.setAttribute("cartItems", items);
 
-        // Forward dữ liệu đến trang Cart.jsp
         request.getRequestDispatcher("Home/Cart.jsp").forward(request, response);
     }
 
@@ -95,7 +94,6 @@ public class CartController extends HttpServlet {
             cart = cartDAO.getCartByUserId(userId); // Lấy lại giỏ hàng sau khi tạo
         }
 
-        // Nếu giỏ hàng vẫn null sau khi tạo, báo lỗi
         if (cart == null) {
             // Xử lý thông báo lỗi nếu không thể tạo giỏ hàng
             request.setAttribute("error", "Không thể tạo giỏ hàng. Vui lòng thử lại.");
@@ -112,7 +110,7 @@ public class CartController extends HttpServlet {
 
         // Thêm sản phẩm vào giỏ hàng
         cartItemDAO.addCartItem(item);
-         
+
         request.setAttribute("success", "thêm vào giỏ hàng thành công.");
         request.getRequestDispatcher("Home/Product_Detail.jsp").forward(request, response);
     }

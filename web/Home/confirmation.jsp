@@ -134,7 +134,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Xác nhận đơn hàng</h1>
+            <h1>Đặt hàng thành công</h1>
 
             <%
                 String orderIdStr = request.getParameter("orderId");
@@ -151,9 +151,8 @@
                     PaymentDAO paymentDAO = new PaymentDAO();
 
                     // Lấy thông tin đơn hàng
-                    Order order = orderDAO.getOrdersByUserId(orderId).stream().findFirst().orElse(null);
+                    Order order = orderDAO.getOrderById(orderId);
 
-                    // Kiểm tra nếu không tìm thấy đơn hàng
                     if (order == null) {
             %>
             <p class="error">Không tìm thấy đơn hàng. Vui lòng thử lại.</p>
@@ -165,19 +164,18 @@
                 // Lấy thông tin thanh toán
                 Payment payment = paymentDAO.getPaymentByOrderId(orderId);
 
-                // Hiển thị thông tin đơn hàng
 %>
             <div class="order-summary">
-                <h2>Order Details</h2>
-                <p><strong>Order ID:</strong> <%= order.getId()%></p>
-                <p><strong>User ID:</strong> <%= order.getUserId()%></p>
-                <p><strong>Order Date:</strong> <%= order.getOrderDate()%></p>
-                <p><strong>Status:</strong> <%= order.getStatus()%></p>
-                <p><strong>Total Amount:</strong> $<%= order.getTotalAmount()%></p>
+                <h2>Chi tiết đơn hàng</h2>
+                <p><strong>ID Đơn hàng:</strong> <%= order.getId()%></p>
+                <p><strong>ID Người mua:</strong> <%= order.getUserId()%></p>
+                <p><strong>Ngày đặt hàng:</strong> <%= order.getOrderDate()%></p>
+                <p><strong>Trạng thái:</strong> <%= order.getStatus()%></p>
+                <p><strong>Tổng tiền:</strong> $<%= order.getTotalAmount()%></p>
             </div>
 
             <div class="order-items">
-                <h2>Items in Your Order</h2>
+                <h2>Các mặt hàng trong đơn hàng của bạn</h2>
                 <table>
                     <thead>
                         <tr>
@@ -211,7 +209,7 @@
                 <p><strong>Tổng tiền:</strong> $<%= payment.getAmount()%></p>
             </div>
 
-            <% } // Nếu không tìm thấy đơn hàng
+            <% }
             } catch (NumberFormatException e) {
             %>
             <p class="error">Mã đơn hàng không hợp lệ. Vui lòng kiểm tra lại.</p>
@@ -225,7 +223,7 @@
             %>
 
             <div class="back-to-home">
-                <a href="/tradingjdbc_demo/listhome" class="btn">Back to Home</a>
+                <a href="/tradingjdbc_demo/listhome" class="btn">Quay lại trang chủ</a>
             </div>
         </div>
     </body>

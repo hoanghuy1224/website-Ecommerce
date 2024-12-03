@@ -1,3 +1,4 @@
+/* Reset margin và padding cho body */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -8,7 +9,6 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #333;
-
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -17,12 +17,16 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
+    margin-bottom: 20px; /* Tạo khoảng cách dưới header */
 }
 
-.topnav{
+/* Font-size cho các liên kết trong navbar */
+.topnav {
     margin: 0;
     font-size: 24px;
 }
+
+/* Style cho các liên kết trong navbar */
 .topnav a {
     float: left;
     display: block;
@@ -33,11 +37,13 @@ body {
     font-size: 17px;
 }
 
+/* Hover hiệu ứng cho các liên kết */
 .topnav a:hover {
     background-color: #ddd;
     color: black;
 }
 
+/* Hiệu ứng cho các liên kết khi được chọn (active) */
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
@@ -45,39 +51,33 @@ body {
 
 /* Main Content Area */
 .main-content {
-    margin-top: 20px;
+    margin-top: 80px; /* Khoảng cách từ header xuống phần chính */
     padding: 20px;
 }
 
-.dashboard-cards {
+/* Container chứa hình ảnh */
+.image-container {
+    width: 100%;
+    height: calc(100vh - 160px); /* Chiếm toàn bộ chiều cao giữa header và footer */
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Màu nền nếu cần */
+    margin-top: 60px; /* Khoảng cách từ header xuống phần nội dung */
+    padding: 20px 0; /* Thêm padding trên và dưới để không bị dính vào viền */
 }
 
-.card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    flex: 1 1 calc(33.333% - 40px);
-    text-align: center;
-}
-
-.card h3 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.card p {
-    font-size: 20px;
-    color: #4CAF50;
-    font-weight: bold;
+/* Điều chỉnh hình ảnh để nó dịch xuống theo chiều cao của header và footer */
+.image-container img {
+    width: 100%; /* Đảm bảo hình ảnh chiếm hết chiều rộng màn hình */
+    height: auto; /* Đảm bảo tỷ lệ hình ảnh */
+    max-height: calc(100vh - 160px); /* Hình ảnh sẽ có chiều cao tối đa bằng khoảng cách giữa header và footer */
+    object-fit: cover; /* Cắt hình ảnh nếu cần để phù hợp với không gian */
 }
 
 /* Footer */
 .footer {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     padding: 10px;
     background-color: #333;
@@ -87,7 +87,8 @@ body {
     bottom: 0;
 }
 
+/* Style cho thẻ h1 */
 h1 {
-    text-align: center; /* Căn giữa nội dung bên trong thẻ h1 */
-    color: #333; /* Màu chữ */
+    text-align: center;
+    color: #333;
 }

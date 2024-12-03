@@ -86,7 +86,7 @@ public class CheckoutServlet extends HttpServlet {
             // 1. Tạo đơn hàng mới
             Order order = new Order();
             order.setUserId(userId);
-            order.setOrderDate(new Date()); // Lưu ngày hiện tại
+            order.setOrderDate(new Date());
             order.setStatus("Pending");
             order.setTotalAmount(totalAmount);
 
@@ -127,12 +127,13 @@ public class CheckoutServlet extends HttpServlet {
 
             // 6. Chuyển hướng tới trang xác nhận đơn hàng
             response.sendRedirect("Home/confirmation.jsp?orderId=" + orderId);
+            System.out.println("Order ID: " + orderId);
+
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Xử lý lỗi: Mã hóa thông báo lỗi và chuyển hướng lại trang checkout
             String errorMessage = e.getMessage();
-            String encodedErrorMessage = URLEncoder.encode(errorMessage, "UTF-8"); // Mã hóa lỗi
+            String encodedErrorMessage = URLEncoder.encode(errorMessage, "UTF-8"); 
             response.sendRedirect("Home/checkout.jsp?error=" + encodedErrorMessage);
         }
     }

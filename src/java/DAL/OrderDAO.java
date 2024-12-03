@@ -17,8 +17,6 @@ public class OrderDAO extends DBContext {
         try (PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, userId);
             st.setDouble(2, totalAmount);
-
-            // Trả về ID của đơn hàng vừa tạo
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -40,17 +38,35 @@ public class OrderDAO extends DBContext {
                     Order order = new Order();
                     order.setId(rs.getInt("id"));
                     order.setUserId(rs.getInt("user_id"));
-
-                    // Lấy dữ liệu từ ResultSet và chuyển đổi thành Date
-                    Date orderDate = rs.getDate("order_date");
-                    order.setOrderDate(orderDate);
-
+                    order.setOrderDate(rs.getDate("order_date")); 
                     order.setStatus(rs.getString("status"));
                     order.setTotalAmount(rs.getDouble("total_amount"));
+
                     orders.add(order);
                 }
             }
         }
         return orders;
     }
+
+    // Lấy đơn hàng theo Order ID
+    public Order getOrderById(int orderId) throws SQLException {
+        String query = "SELECT * FROM Orders WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, orderId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setUserId(rs.getInt("user_id"));
+                    order.setOrderDate(rs.getDate("order_date"));
+                    order.setStatus(rs.getString("status"));
+                    order.setTotalAmount(rs.getDouble("total_amount"));
+                    return order;
+                }
+            }
+        }
+        return null;
+    }
+
 }

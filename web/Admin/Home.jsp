@@ -15,12 +15,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
-     
+
+
         <%@include file="Header.jsp" %>
-        
+        <!-- Thêm div chứa hình ảnh ở giữa trang -->
+        <div class="image-container">
+            <img src="Admin/image/banner.jpg" alt="Image description"/>
+        </div>
         <%@include file="Footer.jsp" %>
-   
+
 
     </body>
 </html>

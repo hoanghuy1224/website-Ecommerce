@@ -5,7 +5,6 @@ import DAL.ProductDAO;
 import Model.Category;
 import Model.Product;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
