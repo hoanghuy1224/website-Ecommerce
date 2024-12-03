@@ -2,8 +2,10 @@ package Controller.Home;
 
 import DAL.CartDAO;
 import DAL.CartItemDAO;
+import DAL.ProductDAO;
 import Model.CartItem;
 import Model.Cart;
+import Model.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,7 @@ public class CartController extends HttpServlet {
 
     private CartDAO cartDAO = new CartDAO();
     private CartItemDAO cartItemDAO = new CartItemDAO();
+    private ProductDAO productDAO = new ProductDAO(); // Thêm ProductDAO để lấy thông tin sản phẩm
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +60,13 @@ public class CartController extends HttpServlet {
 
         // Lấy các sản phẩm trong giỏ hàng
         List<CartItem> items = cartItemDAO.getCartItems(cart.getId());
+
+        // Lấy thông tin sản phẩm cho từng CartItem
+        for (CartItem item : items) {
+            Product product = productDAO.getProductByID(item.getProductId()); // Lấy sản phẩm từ productDAO
+            item.setProduct(product); // Gán thông tin sản phẩm vào CartItem
+        }
+
         request.setAttribute("cartItems", items);
 
         request.getRequestDispatcher("Home/Cart.jsp").forward(request, response);
@@ -111,7 +121,7 @@ public class CartController extends HttpServlet {
         // Thêm sản phẩm vào giỏ hàng
         cartItemDAO.addCartItem(item);
 
-        request.setAttribute("success", "thêm vào giỏ hàng thành công.");
+        request.setAttribute("success", "Thêm vào giỏ hàng thành công.");
         request.getRequestDispatcher("Home/Product_Detail.jsp").forward(request, response);
     }
 }
