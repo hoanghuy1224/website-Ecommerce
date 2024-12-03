@@ -63,4 +63,15 @@ public class CartItemDAO extends DBContext {
             e.printStackTrace();
         }
     }
+    
+    // Xóa tất cả các mục giỏ hàng theo cartId
+    public void deleteCartItems(int cartId) {
+        String sql = "DELETE FROM CartItem WHERE cart_id = ?";
+        try (PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setInt(1, cartId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

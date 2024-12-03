@@ -267,7 +267,7 @@
             </table>
 
             <h3>Tổng tiền: <%= total%> VND</h3>
-            <a href="checkout" class="checkout">Thanh toán</a>
+            <a href="CheckoutServlet" class="checkout">Thanh toán</a>
             <a href="/tradingjdbc_demo/listhome" class="back-home">Quay lại trang chủ</a>
         </div>
     </body>

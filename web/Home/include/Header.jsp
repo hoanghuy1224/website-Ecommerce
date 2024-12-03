@@ -52,11 +52,11 @@
                         <div class="col-sm-12">
                             <div class="custom_menu">
                                 <ul>
-                                    <li><a href="#">Sản phẩm bán chạy</a></li>
-                                    <li><a href="#">Quà tặng</a></li>
-                                    <li><a href="#">Bản phát hành mới</a></li>
-                                    <li><a href="#">Ưu đãi hôm nay</a></li>
-                                    <li><a href="#">dịch vụ khách hàng</a></li>
+                                    <li><a href="listhome">Sản phẩm bán chạy</a></li>
+                                    <li><a href="listhome">Quà tặng</a></li>
+                                    <li><a href="listhome">Bản phát hành mới</a></li>
+                                    <li><a href="listhome">Ưu đãi hôm nay</a></li>
+                                    <li><a href="listhome">dịch vụ khách hàng</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <span class="toggle_icon" onclick="openNav()"><img src="Home/images/toggle-icon.png"></span>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <a style= "text-decoration: none;  color: #f26522;" href="tradingjdbc_demo/listhome">Tất cả danh mục</a>
+                                <a style= "text-decoration: none;  color: #f26522;" href="listhome">Tất cả danh mục</a>
                             </button>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a href="listhome">Tất cả danh mục</a>

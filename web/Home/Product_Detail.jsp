@@ -185,18 +185,18 @@
                         <div id="mySidenav" class="sidenav">
                             <c:forEach var="i" items="${requestScope.listdata}">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                <a href="listhome?categoryId=${i.id}">${i.name}</a>                            
+                                <a href="productdetail?categoryId=${i.id}">${i.name}</a>                            
                             </c:forEach>
                         </div>
                         <span class="toggle_icon" onclick="openNav()"><img src="Home/images/toggle-icon.png"></span>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <a style= "text-decoration: none;  color: #f26522;" href="tradingjdbc_demo/productdetail">Tất cả danh mục</a>
+                                <a style= "text-decoration: none;  color: #f26522;" href="listhome">Tất cả danh mục</a>
                             </button>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a href="listhome">Tất cả danh mục</a>
                                 <c:forEach var="i" items="${requestScope.listdata}">                              
-                                    <a class="dropdown-item" href="listhome?categoryId=${i.id}">${i.name}</a>                                                   
+                                    <a class="dropdown-item" href="productdetail?categoryId=${i.id}">${i.name}</a>                                                   
                                 </c:forEach>
                             </div>
                         </div>

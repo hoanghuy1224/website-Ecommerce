@@ -52,6 +52,8 @@ public class CartController extends HttpServlet {
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);
             return;
         }
+        
+        session.setAttribute("cart", cart);
 
         // Lấy các sản phẩm trong giỏ hàng
         List<CartItem> items = cartItemDAO.getCartItems(cart.getId());
@@ -110,6 +112,7 @@ public class CartController extends HttpServlet {
 
         // Thêm sản phẩm vào giỏ hàng
         cartItemDAO.addCartItem(item);
+         
         request.setAttribute("success", "thêm vào giỏ hàng thành công.");
         request.getRequestDispatcher("Home/Product_Detail.jsp").forward(request, response);
     }
