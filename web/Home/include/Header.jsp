@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -124,7 +126,7 @@
                                     <li><a href="cart">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             <span class="padding_10">Giỏ hàng</span>
-                                           
+
                                         </a>
                                     </li>
                                     <li><a href="login">
@@ -140,3 +142,4 @@
                 </div>
             </div>
             <!-- header section end -->
+

@@ -194,7 +194,7 @@
                                 <a style= "text-decoration: none;  color: #f26522;" href="listhome">Tất cả danh mục</a>
                             </button>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a href="listhome">Tất cả danh mục</a>
+                                <a href="">Tất cả danh mục</a>
                                 <c:forEach var="i" items="${requestScope.listdata}">                              
                                     <a class="dropdown-item" href="productdetail?categoryId=${i.id}">${i.name}</a>                                                   
                                 </c:forEach>
@@ -319,18 +319,18 @@
                                     <button type="submit" class="btn btn-primary" id="add-to-cart-button">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </c:when>
                     <c:otherwise>
                         <p>Không tìm thấy sản phẩm.</p>
                     </c:otherwise>
                 </c:choose>
-                        <c:if test="${not empty success}">
-                                <div class="alert alert-success">
-                                    ${success}  <!-- Hiển thị thông báo thành công -->
-                                </div>
-                            </c:if>
+                <c:if test="${not empty success}">
+                    <div class="alert alert-success">
+                        ${success}  <!-- Hiển thị thông báo thành công -->
+                    </div>
+                </c:if>
             </div>
         </div>
         <!-- product detail section end -->

@@ -21,7 +21,7 @@ public class CartController extends HttpServlet {
 
     private CartDAO cartDAO = new CartDAO();
     private CartItemDAO cartItemDAO = new CartItemDAO();
-    private ProductDAO productDAO = new ProductDAO(); // Thêm ProductDAO để lấy thông tin sản phẩm
+    private ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +52,7 @@ public class CartController extends HttpServlet {
 
         if (cart == null) {
             request.setAttribute("error", "Không thể tạo giỏ hàng. Vui lòng thử lại.");
-            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+            request.getRequestDispatcher("Home/errorPage.jsp").forward(request, response);
             return;
         }
 

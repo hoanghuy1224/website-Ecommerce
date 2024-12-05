@@ -57,7 +57,7 @@ public class Cart {
         double totalAmount = 0.0;
         if (items != null) {
             for (CartItem item : items) {
-                totalAmount += item.getPrice() * item.getQuantity(); // Tính tổng tiền cho từng sản phẩm
+                totalAmount += item.getPrice() * item.getQuantity(); 
             }
         }
         return totalAmount;
